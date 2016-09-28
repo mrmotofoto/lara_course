@@ -3,12 +3,14 @@
 @section('content')
 
 <h1>Create Users</h1>
-    {!! Form::open(['method'=>'POST', 'action' => 'AdminUsersController@store']) !!}
+    {!! Form::open(['method'=>'POST', 'action' => 'AdminUsersController@store','files' => true]) !!}
+
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
             {!! Form::text('name', null, ['class'=>'form-control'])!!}
             {{ csrf_field() }}
         </div>
+
         <div class="form-group">
             {!! Form::label('email', 'Email:') !!}
             {!! Form::email('email', null, ['class'=>'form-control'])!!}
@@ -20,13 +22,18 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('file', 'Choose Image:') !!}
+            {!! Form::file('file', null, ['class'=>'form-control'])!!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('role_id', 'Role:') !!}
             {!! Form::select('role_id',['' => 'Choose Role'] + $roles, null, ['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('status', 'Status:') !!}
-            {!! Form::select('status', [
+            {!! Form::label('is_active', 'Status:') !!}
+            {!! Form::select('is_active', [
                 1 => 'Active',
                 0 => 'Not Active'
                 ], 1,
