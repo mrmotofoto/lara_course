@@ -15,6 +15,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('password', 'Password:') !!}
+            {!! Form::password('password', ['class'=>'form-control'])!!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('role_id', 'Role:') !!}
             {!! Form::select('role_id',['' => 'Choose Role'] + $roles, null, ['class'=>'form-control'])!!}
         </div>
@@ -27,8 +32,12 @@
                 ], 1,
             ['class'=>'form-control'])!!}
         </div>
+
         <div class="form-group">
             {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
         </div>
         {!! Form::close() !!}
+
+    @include('includes.form_error')
+
 @stop
