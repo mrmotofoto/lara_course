@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 
 class AdminUsersController extends Controller
 {
@@ -41,7 +42,8 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
-        $name = $request->name;
+        $name = $request->all();
+        return $name;
 
     }
 

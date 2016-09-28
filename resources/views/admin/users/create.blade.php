@@ -14,8 +14,12 @@
                 {!! Form::email('email', null, ['class'=>'form-control'])!!}
             </div>
             <div class="form-group">
-                {!! Form::label('passwaord', 'Password') !!}
-                {!! Form::email('password', null, ['class'=>'form-control'])!!}
+                {!! Form::label('status', 'Email Address') !!}
+                {!! Form::email('status', null, ['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('password', 'password') !!}
+                {!! Form::text('password', null, ['class'=>'form-control'])!!}
             </div>
             <div class="form-group">
                 {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
