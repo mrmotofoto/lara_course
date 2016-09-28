@@ -23,10 +23,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
-
-
 </head>
 
 <body id="admin-page">
@@ -74,9 +70,6 @@
 
 
 
-
-
-
         {{--<ul class="nav navbar-nav navbar-right">--}}
         {{--@if(auth()->guest())--}}
         {{--@if(!Request::is('auth/login'))--}}
@@ -96,10 +89,6 @@
         {{--</li>--}}
         {{--@endif--}}
         {{--</ul>--}}
-
-
-
-
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -322,9 +311,6 @@
 </div>
 
 
-
-
-
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -332,7 +318,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header"></h1>
 
-                @yield('content')
+                    @yield('content')
 
             </div>
             <!-- /.col-lg-12 -->
