@@ -30,8 +30,6 @@
                     <td>Author</td>
                     @else
                         <td>Subscriber</td>
-                    @endelse
-                @endelseif
             @endif
             <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
             <td>{{$user->created_at->diffForHumans()}}</td>

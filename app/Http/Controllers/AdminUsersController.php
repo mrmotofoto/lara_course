@@ -41,6 +41,8 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
+        $name = $request->name;
+
     }
 
     /**

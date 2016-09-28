@@ -1,13 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Admin Users Create1</h1>
-</body>
-</html>
+@extends('layouts.admin')
+
+@section('content')
+
+    <h1>Create Users</h1>
+        {!! Form::open(['method'=>'POST', 'action' => 'AdminUsersController@store']) !!}
+            <div class="form-group">
+                {!! Form::label('name', 'Full Name') !!}
+                {!! Form::text('name', null, ['class'=>'form-control'])!!}
+                {{ csrf_field() }}
+            </div>
+            <div class="form-group">
+                {!! Form::label('email', 'Email Address') !!}
+                {!! Form::email('email', null, ['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('passwaord', 'Password') !!}
+                {!! Form::email('password', null, ['class'=>'form-control'])!!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+            </div>
+            {!! Form::close() !!}
+@stop
