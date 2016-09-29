@@ -3,6 +3,10 @@
 @section('content')
 
     <h1>Edit User</h1>
+    <div class="row">
+        @include('includes.form_error')
+    </div>
+
     <div class="col-sm-3">
         <img src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt="" class="img-responsive img-rounded">
     </div>
@@ -48,14 +52,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Update User', ['class' => 'btn btn-primary']) !!}
         </div>
         {!! Form::close() !!}
     </div>
-
-
-
-
-    @include('includes.form_error')
-
 @stop
