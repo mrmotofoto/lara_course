@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 
 class AdminUsersController extends Controller
@@ -35,7 +36,7 @@ class AdminUsersController extends Controller
             $input = $request->except('password');
         } else {
             $input = $request->all();
-            $input->password = bcrypt($request->password);
+            $input['password'] = bcrypt($request->password);
         }
         //Check To See if Photo Uploaded------------------------
         if($file = $request->file('photo_id')) {
@@ -52,6 +53,7 @@ class AdminUsersController extends Controller
         //$input['password'] = bcrypt($request->password);
         //Create New user---------------------------------------
         User::create($input);
+        Session::flash('created_user', 'A User Has Been Created');
         return redirect('/admin/users');
     }
 
@@ -77,7 +79,7 @@ class AdminUsersController extends Controller
             $input = $request->except('password');
         } else {
             $input = $request->all();
-            $input->password = bcrypt($request->password);
+            $input['password'] = bcrypt($request->password);
         }
         //Check To See if Photo Uploaded------------------------
         if($file = $request->file('photo_id')) {
@@ -92,13 +94,19 @@ class AdminUsersController extends Controller
         }
         //Update user---------------------------------------
         $user->update($input);
+        Session::flash('updated_user', 'The User Has Been Updated');
         return redirect('/admin/users');
     }
 
 
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        //PHP UNLINK FUNCTION REMOVE PIC
+        unlink(public_path() . $user->photo->file);
+        $user->delete();
+        //LARAVEL FLASH SESSION---------------------------
+        Session::flash('deleted_user', 'The User Has Been Deleted');
         return redirect('/admin/users');
 
     }
