@@ -35,9 +35,10 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
         $input = $request->all();
-
+        //Check To See if Photo Exists and timestamp/move if it does
+        //
         if($file = $request->file('photo_id')) {
-            $name = time() . $file->getClientOriginalName();
+            $name = time() . "_" . $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file' => $name]);
 
