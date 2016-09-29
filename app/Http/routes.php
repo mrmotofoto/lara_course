@@ -26,32 +26,17 @@ Route::get('/admin', function(){
     return view('admin.index');
 });
 
-//Route::get('/userstest', function(){
-//    //$users = new User;
-//    $user = User::find(2);
-//    echo $user->role->id . ' ' . $user->role->name;
-    //dd($users);
-    //dd($users->all());
-    //echo $users->find(1);
-//    foreach ($users as $user) {
-//        echo $user->name;
+//Route::get('/checkadmin', function(){
+//    $user = User::findOrFail(13);
+//    //return $user->role->name;
+//    if($user->role->name == 'administrator') {
+//        return 'This is admin';
 //    }
+//    return 'no admin';
 //});
 
-//Route::get('/roles', function(){
-//    $roles = new Role;
-//    $roles = $roles->all();
-//    foreach ($roles as $role) {
-//        echo $role->id . ' ' . $role->name .'<br>';
-//    }
-//});
+Route::group(['middleware' => 'admin'], function(){
+    Route::resource('admin/users', 'AdminUsersController');
+});
 
-
-//Route::get('/findme', function(){
-//    $user = new User;
-//    echo "<pre>";
-//    var_dump($user);
-//});
-
-Route::resource('admin/users', 'AdminUsersController');
 

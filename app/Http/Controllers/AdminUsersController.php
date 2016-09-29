@@ -93,12 +93,13 @@ class AdminUsersController extends Controller
         //Update user---------------------------------------
         $user->update($input);
         return redirect('/admin/users');
-
     }
 
 
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect('/admin/users');
+
     }
 }
