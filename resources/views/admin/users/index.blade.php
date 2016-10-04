@@ -30,11 +30,6 @@
 
     <tbody>
 
-   <?php
-//        use App\User;
-//        $test_user = User::find(2);
-//        echo '<h2>' . $test_user->role->id . ' ' . $test_user->role->name . '<h2>';
-   ?>
     @if($users)
         @foreach($users as $user)
         <tr>
