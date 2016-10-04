@@ -49,8 +49,7 @@ class AdminUsersController extends Controller
             //assign photo id to new user-----------------------
             $input['photo_id'] = $photo->id;
         }
-        //Encrypt user password---------------------------------
-        //$input['password'] = bcrypt($request->password);
+
         //Create New user---------------------------------------
         User::create($input);
         Session::flash('created_user', 'A User Has Been Created');

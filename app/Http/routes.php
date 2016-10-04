@@ -26,15 +26,6 @@ Route::get('/admin', function(){
     return view('admin.index');
 });
 
-//Route::get('/checkadmin', function(){
-//    $user = User::findOrFail(13);
-//    //return $user->role->name;
-//    if($user->role->name == 'administrator') {
-//        return 'This is admin';
-//    }
-//    return 'no admin';
-//});
-
 Route::group(['middleware' => 'admin'], function(){
     Route::resource('admin/users', 'AdminUsersController');
     Route::resource('admin/posts', 'AdminPostsController');

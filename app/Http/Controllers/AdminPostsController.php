@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Post;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminPostsController extends Controller
 {
@@ -61,7 +62,8 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
         $user->posts()->create($input);
-
+        //LARAVEL FLASH SESSION---------------------------
+        Session::flash('created_post', 'The Post Has Been Created');
         return redirect('/admin/posts');
 
     }
@@ -114,7 +116,8 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
         Auth::user()->posts()->whereId($id)->first()->update($input);
-
+        //LARAVEL FLASH SESSION---------------------------
+        Session::flash('updated_post', 'The Post Has Been Updated');
         return redirect('/admin/posts');
 
 
@@ -134,7 +137,7 @@ class AdminPostsController extends Controller
         unlink(public_path() . $post->photo->file);
         $post->delete();
         //LARAVEL FLASH SESSION---------------------------
-        //Session::flash('deleted_user', 'The User Has Been Deleted');
+        Session::flash('deleted_post', 'The Post Has Been Deleted');
         return redirect('/admin/users');
     }
 }

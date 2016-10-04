@@ -2,7 +2,15 @@
 
 
 @section('content')
-
+    @if(Session::has('created_post'))
+        <p class="bg-danger">{{session('created_post')}}</p>
+    @endif
+    @if(Session::has('updated_post'))
+        <p class="bg-danger">{{session('updated_post')}}</p>
+    @endif
+    @if(Session::has('deleted_post'))
+        <p class="bg-danger">{{session('deleted_post')}}</p>
+    @endif
   @if($posts)
         <table class="table">
             <thead>
