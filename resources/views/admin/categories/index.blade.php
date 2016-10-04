@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Index Categories</h1>
+    <h1>Categories</h1>
     <div class="col-sm-6">
         {!! Form::open(['method'=>'POST', 'action' => 'AdminCategoriesController@store']) !!}
 
@@ -33,7 +33,7 @@
                 @foreach($categories as $category)
                     <tr>
                         <td>{{$category->id}}</td>
-                        <td><a href="{{route('admin.users.edit', $category->id)}}">{{$category->name}}</a></td>
+                        <td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></td>
                         <td>{{$category->created_at->diffForHumans()}}</td>
                     </tr>
                 @endforeach
