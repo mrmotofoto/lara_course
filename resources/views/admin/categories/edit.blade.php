@@ -1,7 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: richardstiehm
- * Date: 9/27/16
- * Time: 3:32 PM
- */
+@extends('layouts.admin')
+
+@section('content')
+
+    <h1>Edit Categories</h1>
+@stop
