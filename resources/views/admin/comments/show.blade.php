@@ -50,7 +50,7 @@
 
 
                             <div class="form-group">
-                                {!! Form::submit('Rejected', ['class'=>'btn btn-danger']) !!}
+                                {!! Form::submit('Unapproved', ['class'=>'btn btn-danger']) !!}
                             </div>
                             {!! Form::close() !!}
 
