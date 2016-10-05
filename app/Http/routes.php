@@ -40,4 +40,8 @@ Route::group(['middleware' => 'admin'], function(){
     Route::resource('admin/comments/replies', 'CommentRepliesController');
 });
 
+//USER NEEDS TO BE LOGGED IN TO MAKE REPLY
+Route::group(['middleware' => 'auth'], function(){
+    Route::post('comment/reply', 'CommentRepliesController@createReply');
 
+});

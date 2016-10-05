@@ -56,7 +56,7 @@
 @endif
 <hr>
 
-
+<h2>Post Comments</h2>
 @if(count($comments) > 0)
 <!-- Posted Comments -->
     @foreach($comments as $comment)
@@ -69,35 +69,52 @@
                 <small>{{$comment->created_at->diffForHumans()}}</small>
             </h4>
             {{$comment->body}}
+
+            @if(count($comment->replies) > 0)
+                @foreach($comment->replies as $reply)
+            {{--NESTED COMMENT--}}
+
+                    <div id="nested-comments" class="media">
+                        <a class="pull-left" href="#">
+                            <img width="50" height="50" class="media-object" src="{{$reply->photo}}" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{$reply->author}}
+                                <small>{{$reply->created_at->diffForHumans()}}</small>
+                            </h4>
+                            {{$reply->body}}
+                        </div>
+
+                        <div class="comment-reply-container">
+                            <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+                            <div class="comment-reply col-sm-6">
+                                {!! Form::open(['method'=>'POST', 'action' => 'CommentRepliesController@createReply']) !!}
+                                <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                <div class="form-group">
+                                    {!! Form::label('body', 'Reply') !!}
+                                    {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2])!!}
+                                    {{ csrf_field() }}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+
+                </div>
+                @endforeach
+            @endif
+            @if(Session::has('reply_message'))
+                {{session('reply_message')}}
+            @endif
         </div>
     </div>
+
     @endforeach
 @endif
 
-<!-- Comment -->
-<div class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="http://placehold.it/64x64" alt="">
-    </a>
-    <div class="media-body">
-        <h4 class="media-heading">Start Bootstrap
-            <small>August 25, 2014 at 9:30 PM</small>
-        </h4>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
 
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Nested Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-    </div>
-</div>
 @stop
 
 @section('categories')
@@ -125,4 +142,12 @@
             </ul>
         </div>
     </div>
+@stop
+
+@section('scripts')
+    <script>
+        $(".comment-reply-container .toggle-reply").click(function(){
+            $(this).next().slideToggle('slow');
+        });
+    </script>
 @stop
